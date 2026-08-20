@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvelino Husca — Software Developer</title>
+<meta name="description" content="Marvelino Husca — IT student, RAG systems builder, and QA-minded developer based in Malang, Indonesia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12161c;
+    --ink-raised:#171c23;
+    --parchment:#EDEAE3;
+    --parchment-dim:#a9aeb8;
+    --amber:#E8A33D;
+    --teal:#4FB0A8;
+    --slate:#2A323C;
+    --slate-soft:#1d2229;
+    --pass:#5FB27A;
+    --radius:3px;
+    --disp:'Space Grotesk',sans-serif;
+    --body:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px;}
+
+  /* ---- nav ---- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,22,28,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--slate);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:900px; margin:0 auto;
+  }
+  .nav-mark{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
+    color:var(--amber);
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-mark::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--pass); box-shadow:0 0 0 3px rgba(95,178,122,0.18);
+  }
+  .nav-links{display:flex; gap:28px; font-family:var(--mono); font-size:13px;}
+  .nav-links a{color:var(--parchment-dim); text-decoration:none; transition:color .15s;}
+  .nav-links a:hover{color:var(--parchment);}
+  @media (max-width:560px){ .nav-links{gap:16px;} }
+
+  /* ---- hero ---- */
+  .hero{padding:72px 0 56px; border-bottom:1px solid var(--slate);}
+  .status-line{
+    font-family:var(--mono); font-size:12.5px; color:var(--teal);
+    letter-spacing:0.04em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .status-line .dot{width:6px; height:6px; border-radius:50%; background:var(--teal);}
+
+  h1{
+    font-family:var(--disp); font-weight:700;
+    font-size:clamp(34px, 6vw, 54px);
+    line-height:1.08; letter-spacing:-0.01em;
+    color:var(--parchment);
+  }
+  .role{
+    font-family:var(--disp); font-weight:500;
+    font-size:clamp(17px,2.4vw,21px);
+    color:var(--amber); margin-top:10px;
+  }
+  .hero-desc{
+    max-width:560px; margin-top:20px; font-size:16px; color:var(--parchment-dim);
+  }
+
+  .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+  .badge{
+    font-family:var(--mono); font-size:12px;
+    border:1px solid var(--slate); border-radius:var(--radius);
+    padding:6px 11px; color:var(--parchment-dim);
+    display:flex; align-items:center; gap:7px;
+  }
+  .badge b{color:var(--parchment); font-weight:500;}
+  .badge.ok{border-color:rgba(95,178,122,0.35); color:var(--pass);}
+  .badge.ok b{color:var(--pass);}
+
+  .hero-cta{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:13.5px;
+    padding:11px 20px; border-radius:var(--radius);
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s, background .15s, border-color .15s;
+  }
+  .btn-primary{background:var(--amber); color:#171307; font-weight:600;}
+  .btn-primary:hover{transform:translateY(-1px); background:#f0af4d;}
+  .btn-ghost{border:1px solid var(--slate); color:var(--parchment);}
+  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+  /* ---- section shell ---- */
+  section{padding:64px 0; border-bottom:1px solid var(--slate);}
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--teal); margin-bottom:14px;
+  }
+  h2{
+    font-family:var(--disp); font-weight:600; font-size:clamp(24px,3.4vw,30px);
+    margin-bottom:22px; color:var(--parchment);
+  }
+
+  /* ---- about ---- */
+  .about-text{max-width:640px; font-size:16px; color:var(--parchment-dim);}
+  .about-text p + p{margin-top:14px;}
+  .about-text strong{color:var(--parchment); font-weight:600;}
+
+  /* ---- skills ---- */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; margin-top:8px;}
+  .skill-group-label{font-family:var(--mono); font-size:12px; color:var(--parchment-dim); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--mono); font-size:12.5px;
+    background:var(--slate-soft); border:1px solid var(--slate);
+    border-radius:var(--radius); padding:6px 10px; color:var(--parchment);
+  }
+
+  /* ---- featured project: build-log style ---- */
+  .project-card{
+    background:var(--ink-raised); border:1px solid var(--slate); border-radius:6px;
+    overflow:hidden;
+  }
+  .project-head{
+    padding:24px 26px 20px; border-bottom:1px solid var(--slate);
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+  }
+  .project-title{font-family:var(--disp); font-weight:600; font-size:22px;}
+  .project-sub{color:var(--parchment-dim); font-size:14.5px; margin-top:6px; max-width:480px;}
+  .status-pill{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em;
+    background:rgba(95,178,122,0.12); color:var(--pass);
+    border:1px solid rgba(95,178,122,0.35);
+    border-radius:20px; padding:5px 12px; white-space:nowrap;
+  }
+  .stack-row{
+    display:flex; flex-wrap:wrap; gap:8px; padding:18px 26px; border-bottom:1px solid var(--slate);
+  }
+  .log{padding:20px 26px 24px; font-family:var(--mono); font-size:13px;}
+  .log-line{
+    display:flex; gap:12px; padding:8px 0; border-bottom:1px dashed var(--slate-soft);
+    color:var(--parchment-dim);
+  }
+  .log-line:last-child{border-bottom:none;}
+  .log-tag{color:var(--pass); flex-shrink:0; width:56px;}
+  .log-text{color:var(--parchment);}
+  .project-links{padding:18px 26px 26px; display:flex; gap:14px; flex-wrap:wrap;}
+
+  /* ---- other projects ---- */
+  .proj-list{display:flex; flex-direction:column; gap:1px; margin-top:8px; background:var(--slate);}
+  .proj-row{
+    background:var(--ink); padding:18px 20px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .proj-row-title{font-family:var(--disp); font-weight:600; font-size:16.5px;}
+  .proj-row-desc{color:var(--parchment-dim); font-size:14px; margin-top:4px;}
+  .proj-row a{font-family:var(--mono); font-size:12.5px; color:var(--teal); text-decoration:none; white-space:nowrap;}
+  .proj-row a:hover{text-decoration:underline;}
+
+  /* ---- contact / footer ---- */
+  footer{padding:56px 0 64px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:16px; margin-top:24px;}
+  .contact-link{
+    font-family:var(--mono); font-size:14px;
+    border:1px solid var(--slate); border-radius:var(--radius);
+    padding:12px 18px; text-decoration:none; color:var(--parchment);
+    display:flex; align-items:center; gap:10px; transition:border-color .15s, color .15s;
+  }
+  .contact-link:hover{border-color:var(--amber); color:var(--amber);}
+  .foot-note{margin-top:40px; font-family:var(--mono); font-size:12px; color:var(--parchment-dim);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="nav-mark">marvel.is-a.dev</span>
+    <nav class="nav-links">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-bottom:1px solid var(--slate); padding-top:72px;">
+    <div class="status-line"><span class="dot"></span> open to internship roles · malang, indonesia</div>
+    <h1>Marvelino Husca</h1>
+    <div class="role">Software Developer, RAG Systems &amp; QA-minded Builder</div>
+    <p class="hero-desc">
+      IT student who ships things and then tries to break them. I build AI-driven
+      automation and retrieval systems, then spend as much time testing and hardening
+      them as I did building them in the first place.
+    </p>
+
+    <div class="badges">
+      <div class="badge ok"><b>●</b> Available for internship</div>
+      <div class="badge">Java · PHP (Laravel)</div>
+      <div class="badge">Python · RAG / LLM pipelines</div>
+      <div class="badge">Polinema — IT, 2nd semester</div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See Onboarding Buddy →</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="eyebrow">01 — About</div>
+    <h2>How I work</h2>
+    <div class="about-text">
+      <p>
+        I'm an Information Technology student at <strong>Politeknik Negeri Malang (Polinema)</strong>,
+        with hands-on freelance and internship experience at <strong>Six Zenith Company</strong>,
+        where I worked across Java, PHP (Laravel), and AI automation tooling.
+      </p>
+      <p>
+        My approach to building software leans heavily on testing discipline: isolating
+        components, reproducing bugs before fixing them, and asking "why" before accepting
+        a quick patch. That habit is what pulled me toward QA-adjacent work — I like
+        systems that are provably correct, not just systems that happen to work today.
+      </p>
+      <p>
+        Outside of coursework, I'm building a portfolio of AI-automation projects, with
+        <strong> Onboarding Buddy</strong> as the centerpiece — a retrieval-augmented
+        chatbot I debugged, tuned, and rebuilt end to end.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">02 — Skills</div>
+    <h2>Toolbox</h2>
+    <div class="skill-groups">
+      <div>
+        <div class="skill-group-label">Languages</div>
+        <div class="chips">
+          <span class="chip">Java</span>
+          <span class="chip">PHP</span>
+          <span class="chip">Python</span>
+          <span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Frameworks &amp; Platforms</div>
+        <div class="chips">
+          <span class="chip">Laravel</span>
+          <span class="chip">Langflow</span>
+          <span class="chip">Vercel Serverless</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">AI / Data</div>
+        <div class="chips">
+          <span class="chip">RAG Pipelines</span>
+          <span class="chip">AstraDB (Vector)</span>
+          <span class="chip">Google Gemini</span>
+          <span class="chip">Prompt Engineering</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">QA &amp; Process</div>
+        <div class="chips">
+          <span class="chip">Test-case design</span>
+          <span class="chip">Bug isolation</span>
+          <span class="chip">Regression testing</span>
+          <span class="chip">Agent eval metrics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="eyebrow">03 — Featured Build</div>
+    <h2>Onboarding Buddy</h2>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">HR Onboarding RAG Chatbot</div>
+          <div class="project-sub">
+            A retrieval-augmented chatbot that answers new-hire onboarding questions
+            grounded in real company documents — built, broken, and rebuilt to be reliable.
+          </div>
+        </div>
+        <span class="status-pill">● verified &amp; live</span>
+      </div>
+
+      <div class="stack-row">
+        <span class="chip">Langflow</span>
+        <span class="chip">AstraDB</span>
+        <span class="chip">Google Gemini</span>
+        <span class="chip">Vercel</span>
+      </div>
+
+      <div class="log">
+        <div class="log-line"><span class="log-tag">build</span><span class="log-text">Reimplemented the Langflow pipeline as a Vercel serverless backend for a fully deployable live demo.</span></div>
+        <div class="log-line"><span class="log-tag">tune</span><span class="log-text">Tuned chunk size, overlap, and raised AstraDB search score threshold to 0.7 to cut noisy retrievals.</span></div>
+        <div class="log-line"><span class="log-tag">fix</span><span class="log-text">Enabled deduplication by file_path in the ingestion flow after catching duplicate chunks in retrieval.</span></div>
+        <div class="log-line"><span class="log-tag">guard</span><span class="log-text">Added anti-fabrication instructions after catching the model hallucinating answers not in the source docs.</span></div>
+        <div class="log-line"><span class="log-tag">design</span><span class="log-text">Built a two-stage condensation architecture to give the chatbot reliable multi-turn memory.</span></div>
+        <div class="log-line"><span class="log-tag">test</span><span class="log-text">Verified against a four-category hero-query test set before shipping the live demo.</span></div>
+      </div>
+
+      <div class="project-links">
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Live demo →</a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Source on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:none;">
+    <div class="eyebrow">04 — Contact</div>
+    <h2>Let's talk</h2>
+    <p style="color:var(--parchment-dim); max-width:520px;">
+      Looking for QA-adjacent developer internships, and open to freelance work.
+      Reach out — I usually reply within a day.
+    </p>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:marvelinohusca123@gmail.com">✉ marvelinohusca123@gmail.com</a>
+      <a class="contact-link" href="https://github.com/unkpell0" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="contact-link" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-note">marvel.is-a.dev — built &amp; maintained by Marvelino Husca, Malang, Indonesia.</div>
+  </footer>
+
+</main>
+
+</body>
+</html>
